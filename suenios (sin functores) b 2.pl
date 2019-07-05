@@ -7,10 +7,13 @@ cree(macarena, reyesMagos).
 cree(macarena, magoCapria).
 cree(macarena, campanita).
 
-suenia(gabriel, ganarLoteria([5, 9])).
-suenia(gabriel, serFutbolista(arsenal)).
-suenia(juan, serCantante(100000)).
-suenia(macarena, serCantante(100000)).
+% Variantes con predicado suenia y con un termino para indicar el tipo de suenio
+% Se puede hacer porque todos los suenios tienen la misma aridad
+
+suenia(ganarLoteria,gabriel,[5, 9]).
+suenia(serFutbolista,gabriel,arsenal).
+suenia(serCantante,juan,100000).
+suenia(serCantante,macarena, 10000).
 
 enfermo(conejoDePascua).
 
@@ -23,7 +26,7 @@ esEquipoGrande(arsenal).
 % Punto 2
 valorDeSuenios(Persona, Valor):-
   cree(Persona, _),
-  findall(Valor, (suenia(Persona, Suenio), valorDeSuenio(Suenio, Valor)), ListaDeValores),
+  findall(Valor, valorDeSuenio(Persona, Valor), ListaDeValores),
   sum_list(ListaDeValores, Valor).
 
 
@@ -35,17 +38,22 @@ ambiciosa(Persona) :-
 quiereVenderMucho(Numeros) :-
   Numeros > 500000.
 
-valorDeSuenio(ganarLoteria(Numeros), Valor) :-
+valorDeSuenio(Persona, Valor) :-
+  suenia(ganarLoteria,Persona, Numeros),
   length(Numeros, Length),
   Valor is Length*10.
-valorDeSuenio(serFutbolista(Club), 3) :-
+valorDeSuenio(Persona, 3) :-
+  suenia(serFutbolista,Persona, Club),
   esEquipoGrande(Club).
-valorDeSuenio(serFutbolista(Club), 6) :-
+valorDeSuenio(Persona, 6) :-
+  suenia(serFutbolista,Persona,Club),
   not(esEquipoGrande(Club)).
-valorDeSuenio(serCantante(Numeros), 6) :-
+valorDeSuenio(Persona, 6) :-
+  suenia(serCantante,Persona,Numeros),
   quiereVenderMucho(Numeros).
-valorDeSuenio(serCantante(Numeros), 4) :-
-    not(quiereVenderMucho(Numeros)).
+valorDeSuenio(Persona, 4) :-
+  suenia(serCantante,Persona,Numeros),
+  not(quiereVenderMucho(Numeros)).
 
 % Punto 3
 
@@ -54,24 +62,25 @@ tieneQuimica(Personaje, Persona) :-
   cumpleCondicionDeQuimica(Personaje, Persona).
 
 cumpleCondicionDeQuimica(campanita, Persona) :-
-  suenia(Persona, Suenio),
-  valorDeSuenio(Suenio, Numero),
+  valorDeSuenio(Persona, Numero),
   Numero > 5.
 
 cumpleCondicionDeQuimica(Personaje, Persona) :-
   Personaje \= campanita,
-  forall(suenia(Persona, Suenio), esPuro(Suenio)),
+  not(suenioImpuro(Persona)),
   not(ambiciosa(Persona)).
 
-  esPuro(serFutbolista(_)).
-  esPuro(serCantante(Numero)) :-
-    Numero < 200000.
+suenioImpuro(Persona):-
+  suenia(ganarLoteria,Persona,_).
+suenioImpuro(Persona):-
+  suenia(serCantante,Persona,Numero),
+  Numero >= 200000.
 
 
 % Punto 4
 
 puedeAlegrar(Persona, Personaje) :-
-  suenia(Persona, _),
+  valorDeSuenio(Persona, _),
   tieneQuimica(Personaje, Persona),
   not(personajeOBackupEnfermo(Personaje)).
 
