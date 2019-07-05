@@ -19,7 +19,7 @@ Conocemos tres tipos de sueño
 Queremos reflejar entonces que
 * Gabriel quiere ganar la lotería apostando al 5 y al 9, y también quiere ser un futbolista de Arsenal
 * Juan quiere ser un cantante que venda 100.000 “discos”
-* Macarena no quiere ganar la lotería, sí ser cantante estilo “Eruca Sativa” y vender 10.000 discos
+* Macarena no quiere ganar la lotería, sí ser cantante estilo “Eruca Sativa” y vender 100.000 discos
 
 1. Generar la base de conocimientos inicial
 2. Indicar qué conceptos entraron en juego para cada punto.
