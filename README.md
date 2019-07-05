@@ -1,8 +1,10 @@
-### Sueños
+# Sueños
 
-*Un consorcio internacional nos pidió que relevemos su negocio, que consiste en hacer el seguimiento de los sueños que tiene cada una de las personas y los personajes que están destinados a cumplir esos sueños.*
+_**Un consorcio internacional nos pidió que relevemos su negocio, que consiste en hacer el seguimiento de los sueños que tiene cada una de las personas y los personajes que están destinados a cumplir esos sueños.**_
 
-# Punto 1 
+![](sueños.jpg)
+
+### Punto 1 
 Queremos reflejar que 
 * Gabriel cree en Campanita, el Mago de Oz y Cavenaghi
 * Juan cree en el Conejo de Pascua
@@ -17,12 +19,12 @@ Conocemos tres tipos de sueño
 Queremos reflejar entonces que
 * Gabriel quiere ganar la lotería apostando al 5 y al 9, y también quiere ser un futbolista de Arsenal
 * Juan quiere ser un cantante que venda 100.000 “discos”
-* Macarena no quiere ganar la lotería, sí ser cantante estilo “Eruca Sativa” y vender 10.000 discos
+* Macarena no quiere ganar la lotería, sí ser cantante estilo “Eruca Sativa” y vender 100.000 discos
 
 1. Generar la base de conocimientos inicial
 2. Indicar qué conceptos entraron en juego para cada punto.
 
-# Punto 2
+### Punto 2
 Queremos saber si una persona es ambiciosa, esto ocurre cuando la suma de dificultades de los sueños es mayor a 20. La dificultad de cada sueño se calcula como
 * 6 para ser un cantante que vende más de 500.000 ó 4 en caso contrario
 * ganar la lotería implica una dificultad de 10 * la cantidad de los números apostados
@@ -32,7 +34,7 @@ Puede agregar los predicados que sean necesarios. El predicado debe ser inversib
 
 Gabriel es ambicioso, porque quiere ganar a la lotería con 2 números (20 puntos de dificultad) y quiere ser futbolista de Arsenal (3 puntos) = 23 que es mayor a 20. En cambio Juan y Macarena tienen 4 puntos de dificultad (cantantes con menos de 500.000 discos)
 
-# Punto 3 
+### Punto 3 
 Queremos saber si un personaje tiene química con una persona. Esto se da si la persona cree en el personaje y...
 * para Campanita, la persona debe tener al menos un sueño de dificultad menor a 5.
 * para el resto, 
@@ -44,7 +46,7 @@ El predicado debe ser inversible para todos sus argumentos.
 
 Campanita tiene química con Gabriel (porque tiene como sueño ser futbolista de Arsenal, que es un sueño de dificultad 3 - menor a 5), y los Reyes Magos, el Mago Capria y Campanita tienen química con Macarena porque no es ambiciosa.
 
-# Punto 4 
+### Punto 4 
 Sabemos que
 * Campanita es amiga de los Reyes Magos y del Conejo de Pascua
 * el Conejo de Pascua es amigo de Cavenaghi, entre otras amistades
