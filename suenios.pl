@@ -6,6 +6,9 @@ cree(juan, conejoDePascua).
 cree(macarena, reyesMagos).
 cree(macarena, magoCapria).
 cree(macarena, campanita).
+% Variante con listas
+% Se complica un poco, no vale la pena
+%cree(gabriel, [campanita,gabriel, magoDeOz]).
 
 suenia(gabriel, ganarLoteria([5, 9])).
 suenia(gabriel, serFutbolista(arsenal)).
@@ -24,6 +27,7 @@ esEquipoGrande(arsenal).
 valorDeSuenios(Persona, Valor):-
   cree(Persona, _),
   findall(Valor, (suenia(Persona, Suenio), valorDeSuenio(Suenio, Valor)), ListaDeValores),
+%  findall(Valor, valorDeSuenio(Persona, Valor), ListaDeValores),
   sum_list(ListaDeValores, Valor).
 
 
@@ -35,9 +39,15 @@ ambiciosa(Persona) :-
 quiereVenderMucho(Numeros) :-
   Numeros > 500000.
 
+%valorDeSuenio(Persona, Valor) :-
+%  suenia(Persona, ganarLoteria(Numeros))
+%  length(Numeros, Largo),
+%  Valor is Largo*10.
+% habria que agregar suenia() en cada regla valorDeSuenio
+
 valorDeSuenio(ganarLoteria(Numeros), Valor) :-
-  length(Numeros, Length),
-  Valor is Length*10.
+  length(Numeros, Largo),
+  Valor is Largo*10.
 valorDeSuenio(serFutbolista(Club), 3) :-
   esEquipoGrande(Club).
 valorDeSuenio(serFutbolista(Club), 6) :-
@@ -45,12 +55,15 @@ valorDeSuenio(serFutbolista(Club), 6) :-
 valorDeSuenio(serCantante(Numeros), 6) :-
   quiereVenderMucho(Numeros).
 valorDeSuenio(serCantante(Numeros), 4) :-
-    not(quiereVenderMucho(Numeros)).
+  not(quiereVenderMucho(Numeros)).
 
 % Punto 3
 
 tieneQuimica(Personaje, Persona) :-
   cree(Persona, Personaje),
+% En el caso de usar listas
+%  cree(Persona, Personajes),
+%  member(Personaje, Personajes),
   cumpleCondicionDeQuimica(Personaje, Persona).
 
 cumpleCondicionDeQuimica(campanita, Persona) :-
